@@ -393,47 +393,46 @@
         break-inside: avoid;
     }
 }
-        /* ==========================================================================
-           MEDIA QUERY: Optimizado para Móviles (Android e iPhone 6s / iOS)
+       /* ==========================================================================
+           MEDIA QUERY: Optimizado para Móviles
            ========================================================================== */
         @media (max-width: 768px) {
             body {
-                /* Cambia el fondo para celulares */
-                background-image: url('fotofondo.png');
-                
-                /* IMPORTANTE PARA IPHONE: Evita que el fondo se deforme o se congele de forma errática */
-                background-attachment: scroll; 
-                background-size: cover;
-                background-position: center center;
-                padding: 20px 10px;
+                /* Cambia el fondo para celulares y corrige el error de iOS */
+                background-image: url('fotofondo.png') !important;
+                background-attachment: scroll !important; 
+                background-size: cover !important;
+                background-position: center center !important;
+                padding: 20px 10px !important;
             }
 
-            /* Reorganiza los bloques de lado a lado para que se vean uno abajo del otro en vertical */
-            .contenedor-cards, .contenedor-tarjetas {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
-                padding: 10px 0;
+            /* Forzamos que todos los contenedores de tarjetas ocupen el 95% del ancho */
+            .contenedor-cards, 
+            .contenedor-tarjetas, 
+            .tarjeta-evento, 
+            .card, 
+            .card-pases, 
+            .card-final {
+                width: 95% !important;
+                max-width: 350px !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                box-sizing: border-box !important;
             }
 
-            .tarjeta-evento, .card {
-                width: 100%;
-                max-width: 350px;
-                padding: 25px 20px;
-            }
-
-            .info-padres {
-                flex-direction: column;
-                gap: 15px;
+            /* Aseguramos que las columnas dentro de las tarjetas se apilen verticalmente */
+            .info-padres, 
+            .contenedor-cards, 
+            .contenedor-tarjetas {
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 20px !important;
             }
             
-            .nombres {
-                font-size: 3.5rem;
-            }
-
-            .frase-boda {
-                font-size: 2rem;
-            }
+            /* Ajuste de fuentes para que no se desborden */
+            .nombres { font-size: 3rem !important; }
+            .frase-boda { font-size: 1.8rem !important; }
+            .titulo-tarjeta { font-size: 2rem !important; }
         }
 
 .card-pases, .card-final {
@@ -455,6 +454,27 @@
 .cantidad-pases {
     font-weight: bold;
     color: #b8860b; /* Tono champagne/dorado */
+}
+@media (max-width: 768px) {
+    body {
+        /* Usamos la imagen específica para celular */
+        background-image: url('fotofondo.png') !important;
+        
+        /* CORRECCIÓN PARA IPHONE: */
+        /* Cambiamos a 'scroll' para evitar el bug de Safari */
+        background-attachment: scroll !important; 
+        
+        /* Aseguramos que cubra bien sin deformarse */
+        background-size: cover !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        
+        /* Ajuste de margen y padding para evitar espacios en blanco */
+        margin: 0;
+        padding: 20px 10px;
+        min-height: 100vh;
+    }
+    /* ... resto de tu código ... */
 }
     </style>
 </head>
